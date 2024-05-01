@@ -1,15 +1,16 @@
 import AboutSection from './AboutSection';
 import ContactSection from './ContactSection';
-import Featues from './Features';
+import Features from './Features';
 import HeroSection from './HeroSection';
 import Footer from './Footer';
 import Navbar from './Navbar'
-
+import HeadingLable from './HeadingLable';
 export {
     AboutSection,
     ContactSection,
-    Featues,
+    Features,
     HeroSection,
     Footer,
-    Navbar
+    Navbar,
+    HeadingLable
 }
