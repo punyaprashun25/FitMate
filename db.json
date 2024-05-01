@@ -1,0 +1,18 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "personalDetails":{
+                "name": "Punya Prashun",
+                "age": 22,
+                "emailId": "a@b.com",
+                "password":"1234"
+            },
+            "fitnessDetails":{
+                "height": 120,
+                "weight": 65
+            }
+
+        }
+    ]
+}
