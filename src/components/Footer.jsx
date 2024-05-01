@@ -7,10 +7,10 @@ const Footer = () => {
         In case of any concern, <span className='font-semibold'>Contact Us</span>
       </p>
       <p className="copyright text-[rgba(0,0,0,0.7)]">
-        &copy; 2024 www.fitmate.com All rights reserved.
+        &copy; 2024 www.fitmate.com All rights reserved
       </p>
       <p className="about text-[rgba(0,0,0,0.7)]">
-        An Indian Startup
+      Made with ❤️ by Punya Prashun
       </p>
     </div>
   )
