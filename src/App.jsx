@@ -1,6 +1,7 @@
 import React from 'react'
 import {Homepage, About, Contact, Login, Signup, UserDashboard} from './pages'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Exercise } from './components'
 const App = () => {
   return (
     <BrowserRouter >

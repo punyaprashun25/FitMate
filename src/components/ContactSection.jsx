@@ -3,7 +3,7 @@ import Image from '../assets/contact.png'
 import HeadingLable from './HeadingLable'
 const ContactSection = () => {
   return (
-    <div className='w-full contact-section flex flex-col gap-4 md:flex-row-reverse justify-between md:px-20 py-5'>
+    <div className='w-full contact-section flex flex-col gap-4 md:flex-row-reverse justify-between md:px-20 py-5 px-6'>
       <img src={Image} alt="" className='max-w-96 h-auto'/>
       <div className="details-box w-full md:w-1/2 text-center flex flex-col gap-3 justify-center items-center md:items-start md:justify-start md:py-5 ">
         <HeadingLable headingText={'Contact Us'}/>

@@ -3,7 +3,7 @@ import Hero from '../assets/about.png'
 import HeadingLable from './HeadingLable'
 const AboutSection = () => {
   return (
-    <div className='about w-full mt-[-50%] md:mt-[15%] lg:mt-[30%] mb-10 flex flex-col gap-5 md:flex-row md:justify-center'>
+    <div className='about w-full px-6 mt-[-50%] md:mt-[15%] lg:mt-[30%] mb-10 flex flex-col gap-5 md:flex-row md:justify-center'>
       <img src={Hero} alt="" />
       <div className="about-details flex flex-col text-center gap-4 w-full md:w-1/2  md:justify-center items-center">
         <HeadingLable headingText={"About Us"}/>

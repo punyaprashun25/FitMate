@@ -1,18 +1,40 @@
 {
-    "users": [
-        {
-            "id": 1,
-            "personalDetails":{
-                "name": "Punya Prashun",
-                "age": 22,
-                "emailId": "a@b.com",
-                "password":"1234"
-            },
-            "fitnessDetails":{
-                "height": 120,
-                "weight": 65
-            }
-
-        }
-    ]
+  "users": [
+    {
+      "id": "1",
+      "personalDetails": {
+        "name": "Punya Prashun",
+        "email": "a@b.com",
+        "password": "1234"
+      },
+      "fitnessDetails": {
+        "height": 120,
+        "weight": 65
+      }
+    },
+    {
+      "id": "2",
+      "personalDetails": {
+        "name": "ajb",
+        "email": "jbaj@b.com",
+        "password": "123456"
+      },
+      "fitnessDetails": {
+        "height": 0,
+        "weight": 0
+      }
+    },
+    {
+      "id": 3,
+      "personalDetails": {
+        "name": "a",
+        "email": "a@cb.com",
+        "password": "123456"
+      },
+      "fitnessDetails": {
+        "height": 0,
+        "weight": 0
+      }
+    }
+  ]
 }

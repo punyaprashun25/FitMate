@@ -6,7 +6,7 @@ const Homepage = () => {
     <div>
       <Navbar />
       <HeroSection />
-      <div className="w-full section-container flex flex-col gap-4 px-6 items-center">
+      <div className="w-full section-container flex flex-col gap-4 items-center">
         <AboutSection />
         <Features />
         <ContactSection />
