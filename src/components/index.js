@@ -11,7 +11,9 @@ import Sidebar from './Sidebar';
 import BmiSection from './BmiSection'
 import Profile from './Profile';
 import Exercise from './Exercise';
-import Home from './Home'
+import Home from './Home';
+import WorkoutHistory from './WorkoutHistory';
+import ExerciseCard from './ExerciseCard';
 export {
     AboutSection,
     ContactSection,
@@ -26,5 +28,7 @@ export {
     BmiSection,
     Profile,
     Exercise,
-    Home
+    Home,
+    WorkoutHistory,
+    ExerciseCard
 }

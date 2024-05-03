@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 const useLocalStorage = (key, defaultValue) => {
-  const [value, setValue] = useState(()=>{
+  const [userData, setUserData] = useState(()=>{
     // function that set initail value of the value state.
     // if key is present in the localStorage then initially that value will be stored otherwise default value.
     let currentValue;
@@ -16,10 +16,16 @@ const useLocalStorage = (key, defaultValue) => {
   });
 
   useEffect(()=>{
-    localStorage.setItem(key, JSON.stringify(value));
-  }, [key, value]);
+    localStorage.setItem(key, JSON.stringify(userData));
+  }, [key, userData]);
 
-  return [value, setValue];
+  const removeUser = ()=> {
+    console.log("remove user chal gya")
+
+    localStorage.removeItem("userData");
+  }
+
+  return {userData, setUserData,removeUser};
 }
 
 export default useLocalStorage

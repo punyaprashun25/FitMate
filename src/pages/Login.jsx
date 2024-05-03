@@ -12,23 +12,22 @@ const Login = () => {
   const [user, setUser] = useState({});
 
   // localstorage
-  const [userData, setUserData] = useLocalStorage("userData",null);
+  const {userData, setUserData} = useLocalStorage("userData",null);
 
-  const getUserData = (emailId)=>{
+  const getUserData =async (emailId)=>{
     if(isError){
       alert(error.error)
     }
     else{
       for(let i = 0; i<users.length; i++){
         if(users[i].personalDetails.email===emailId){
-          console.log("I am in");
-          setUser((user)=>user = users[i]);
+          setUser(users[i]);
           setUserData(users[i]);
         }
       }
     }
   }
-  const validateUser = (emailId, pass)=>{
+  const validateUser = (user, emailId, pass)=>{
     if(user){
       if(user.personalDetails.password===pass){
         dispatch(PushUserData(user));
@@ -51,11 +50,12 @@ const Login = () => {
     setLoginData({...loginData, [name]:value});
   }
 
-  const HandleSubmit = (event)=>{
+  const HandleSubmit = async(event)=>{
     // get userdata by emailid & match
     event.preventDefault();
-    getUserData(loginData.email);
-    if(validateUser(loginData.email, loginData.password))
+   await getUserData(loginData.email).then(()=>{
+
+    if(validateUser(user, loginData.email, loginData.password))
     {
       console.log(user);
       Navigate('/dashboard')
@@ -63,6 +63,8 @@ const Login = () => {
     else{
       alert("Login details are incorrect!")
     }
+   });
+  
 
   }
   return (

@@ -4,6 +4,7 @@ import { FaHome } from "react-icons/fa";
 import { CgGym } from "react-icons/cg";
 import { FaRegUserCircle } from "react-icons/fa";
 import { IoSettingsOutline } from "react-icons/io5";
+import { CiBookmark } from "react-icons/ci";
 import { useSelector} from 'react-redux';
 
 const Sidebar = ({setCurrentPage}) => {
@@ -18,24 +19,31 @@ const Sidebar = ({setCurrentPage}) => {
               <p className="company-text flex items-center text-2xl font-bold"><span className='text-red-500'>Fit</span>Mate</p>
           </div>
         </Link>
-        <p className="name text-2xl font-medium">{user[0].personalDetails.name}</p>
+        <div className="greet flex flex-col gap-2 text-center text-2xl font-medium">
+          <p className="hi">Hi,</p>
+          <p className="name text-2xl font-medium">{user[0].personalDetails.name}</p>
+        </div>
       </div>
       <div className="links font-semibold text-xl w-full text-center text-gray-700 px-6 flex flex-col gap-2">
         <div className="link-box w-full py-3 border-b-2 flex items-center gap-2">
           <FaHome />
-          <p className="text" onClick={()=>setCurrentPage("Home")}>Home</p>
+          <p className="text cursor-pointer" onClick={()=>setCurrentPage("Home")}>Home</p>
         </div>
         <div className="link-box w-full py-3 border-b-2 flex items-center gap-2">
           <CgGym />
-          <p className="text" onClick={()=>setCurrentPage("Exercise")}>Exercise Guide</p>
+          <p className="text cursor-pointer" onClick={()=>setCurrentPage("Exercise")}>Exercise Guide</p>
+        </div>
+        <div className="link-box w-full py-3 border-b-2 flex items-center gap-2">
+          <CiBookmark />
+          <p className="text cursor-pointer" onClick={()=>setCurrentPage("WorkoutHistory")}>History</p>
         </div>
         <div className="link-box w-full py-3 border-b-2 flex items-center gap-2 ">
           <FaRegUserCircle />
-          <p className="text" onClick={()=>setCurrentPage("Profile")}>Profile</p>
+          <p className="text cursor-pointer" onClick={()=>setCurrentPage("Profile")}>Profile</p>
         </div>
         <div className="link-box w-full py-3 flex items-center gap-2">
           <IoSettingsOutline />
-          <p className="text" onClick={()=>setCurrentPage("Setting")}>Setting</p>
+          <p className="text cursor-pointer" onClick={()=>setCurrentPage("Setting")}>Setting</p>
         </div>
       </div>
 

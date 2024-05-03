@@ -1,18 +1,18 @@
 import React, { useState } from 'react'
-import {Exercise, Home, Profile, Sidebar, UserNavbar} from '../components'
+import {Exercise, Home, Profile, Sidebar, UserNavbar, WorkoutHistory} from '../components'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import useLocalStorage from '../components/useLocalStorage';
 import { PushUserData } from '../store/userSlice';
 const UserDashboard = () => {
-  const [user, setUser] = useLocalStorage("userData", null);
+  const {userData} = useLocalStorage("userData", null);
   const storedUser = useSelector((state)=>state.user);
   const dispatch = useDispatch();
   const setupDashboard = ()=>{
-    if(user!==null){
+    if(userData!==null){
         if(!(storedUser && storedUser.length))
         {
-          dispatch(PushUserData(user));
+          dispatch(PushUserData(userData));
         }
     }
   }
@@ -22,21 +22,23 @@ const UserDashboard = () => {
   const sections = {
     "Home": <Home />,
     "Profile": <Profile />,
-    "Exercise": <Exercise />
+    "Exercise": <Exercise />,
+    "WorkoutHistory": <WorkoutHistory />
 
   }
-  console.log(user);
+  
   const redirectToHomepage = ()=>{
     alert("No user logged in!");
+    Navigate('/')
   }
   return (
     <div>
       {
-        user!==null
+        userData!==null
         ?(
           <div className='flex w-full'>
             <Sidebar setCurrentPage={setCurrentPage}/>
-            <div className='dashboard-container w-full fle flex-col'>
+            <div className='dashboard-container w-full flex flex-col'>
               <UserNavbar />
               {
                 sections[currentPage]
@@ -44,7 +46,7 @@ const UserDashboard = () => {
             </div>
           </div>
         )
-        :redirectToHomepage()
+        :<div>{redirectToHomepage()}</div>
       }
     </div>
   )
