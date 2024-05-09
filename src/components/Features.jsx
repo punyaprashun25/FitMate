@@ -8,8 +8,8 @@ const Features = () => {
       <HeadingLable headingText={'Our Features'}/>
       <div className='features grid justify-between grid-cols-1 gap-8 md:gap-12 lg:gap-16 sm:grid-cols-2 lg:grid-cols-4'>
       {
-        features.map((feature)=>{
-          return <FeatureCard feature={feature}/>
+        features.map((feature, index)=>{
+          return <FeatureCard feature={feature} key={index}/>
         })
       }
     </div>

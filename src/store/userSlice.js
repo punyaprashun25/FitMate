@@ -1,17 +1,46 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const initialUserState =
+    {
+        id:null,
+        dailyTasks:[],
+        fitnessDetails: {},
+        personalDetails: {},
+        userBgDetails: {}
+    };
+
 const userSlice = createSlice({
     name: "user",
-    initialState: [],
+    initialState: initialUserState,
     reducers : {
         PushUserData(state, action){
-            state.push(action.payload);
+            const data = action.payload;
+            state.id = data.id;
+            state.dailyTasks.push(...data.dailyTasks);
+            state.fitnessDetails = data.fitnessDetails;
+            state.personalDetails = data.personalDetails;
+            state.userBgDetails = data.userBgDetails;
         },
-        PopuserData(state, action){
-            state.splice(0,1);
+        addDailyTask(state, action){
+            state.dailyTasks.push(action.payload);
+        },
+        removeDailyTask(state, action){
+            state.dailyTasks.splice(state.dailyTasks.findIndex((arrow)=>arrow.id === action.payload),1);
+        },
+        setIsComplete(state, action){
+            const {id, status} = action.payload;
+            for(let i = 0; i<state.dailyTasks.length; i++){
+                if(state.dailyTasks[i].id===id){
+                    state.dailyTasks[i] = {...state.dailyTasks[i], isComplete: status};
+                    break;
+                }
+            }
+        },
+        PopuserData(state){
+            state = initialUserState;
         }
     }
 });
 
-export const {PushUserData, PopuserData} = userSlice.actions;
+export const {PushUserData, PopuserData, addDailyTask, setIsComplete, removeDailyTask} = userSlice.actions;
 export default userSlice.reducer;

@@ -10,7 +10,7 @@ import { useSelector} from 'react-redux';
 const Sidebar = ({setCurrentPage}) => {
 
   const user = useSelector((state)=>state.user);
-  console.log((user));
+
   return (
     <div className='w-72 hidden md:flex h-screen flex-col items-center gap-16 sticky left-0 top-0 shadow-md px-4 py-16'>
       <div className="logo h-24 flex flex-col gap-8 items-center">
@@ -21,7 +21,7 @@ const Sidebar = ({setCurrentPage}) => {
         </Link>
         <div className="greet flex flex-col gap-2 text-center text-2xl font-medium">
           <p className="hi">Hi,</p>
-          <p className="name text-2xl font-medium">{user[0].personalDetails.name}</p>
+          <p className="name text-2xl font-medium">{user.personalDetails.name}</p>
         </div>
       </div>
       <div className="links font-semibold text-xl w-full text-center text-gray-700 px-6 flex flex-col gap-2">

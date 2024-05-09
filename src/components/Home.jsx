@@ -1,15 +1,24 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import DailyCard from './DailyCard'
 import BmiSection from './BmiSection';
 import { CiSquarePlus } from "react-icons/ci";
 import { CiCircleRemove } from "react-icons/ci";
 import { generateRandomQuote } from '../util/quotes';
+import { useSelector } from 'react-redux';
+import { addDailyTask } from '../store/userSlice';
+import { useDispatch } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
+import { addTask } from '../firebase/Operation';
+import {fireStore} from '../firebase/firebase'
 
 const Home = () => {
-  const todayTask = ["Workout / Sport Session", "Water intake [8 glasses]", "Food Consumption [2000Kcal/day]"]
-  const [tasks, setTasks] = useState(todayTask);
   const [newTask, setNewTask] = useState("");
   const [IsAdding, setIsAdding] = useState(false);
+  const user = useSelector((state)=>state.user);
+  const [quotes, setQuotes] = useState("");
+
+  const dispatch = useDispatch();
+
 
   const HandleChange = (event) => {
     setNewTask(event.target.value);
@@ -17,9 +26,12 @@ const Home = () => {
   const HandleAddTask = () => {
     setIsAdding(true);
   }
-  const HandleAddNewTask = () => {
+  
+  const HandleAddNewTask = async() => {
     if (newTask.length >= 4) {
-      setTasks((tasks) => { return [...tasks, newTask] });
+      // update task
+      dispatch(addDailyTask({id: uuidv4(), taskName: newTask, isComplete: false}));
+      addTask(fireStore, "users", user.id,{id: uuidv4(), taskName: newTask, isComplete: false});
       setNewTask("");
       setIsAdding(false);
     }
@@ -27,13 +39,16 @@ const Home = () => {
       alert("Input length should be greater than 3!")
     }
   }
+  useEffect(()=>{
+    const quotes = generateRandomQuote();
+    setQuotes(quotes);
+  },[])
 
   return (
     <div className="home-box flex flex-col gap-3">
-      {/* <div className="heading-text w-full h-12 flex items-center justify-center shadow-md bg-slate-500 text-white text-xl font-semibold">Utilities</div> */}
       <div className="content-box w-full px-8 py-8 flex flex-col lg:flex-row gap-5">
         <div className="Target-goal w-full lg:w-1/2 h-[24rem] rounded-md bg-red-400">
-          <iframe src="https://www.youtube.com/embed/HQfF5XRVXjU" title="1DX Mark III - Cinematic Gym Fitness Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" className='w-full h-full rounded-md' allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/HQfF5XRVXjU" title="1DX Mark III - Cinematic Gym Fitness Video" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" className='w-full h-full rounded-md' allowFullScreen></iframe>
         </div>
         <div className="bmi-cal w-full lg:w-1/2 bg-green-500 rounded-md">
           <BmiSection />
@@ -41,14 +56,14 @@ const Home = () => {
       </div>
       <div className="heading-text w-full h-12 flex items-center justify-center shadow-md bg-slate-500 text-white text-xl font-semibold">Random Quotes</div>
       <div className="quotes-box flex justify-center items-center py-5">
-        <p className="quote text-lg">{generateRandomQuote()}</p>
+        <p className="quote text-lg">{quotes}</p>
       </div>
       <div className="heading-text w-full mt-2 h-12 flex items-center justify-center shadow-md bg-slate-500 text-white text-xl font-semibold">Daily Tasks</div>
       <div className="dailyChallege-box w-full flex gap-10 flex-wrap px-8 py-8">
         {
-          tasks && tasks.length
-            ? tasks.map((task, index) => {
-              return <DailyCard challenge={task} key={index} index={index} tasks={tasks} setTasks={setTasks} />
+          user.dailyTasks && user.dailyTasks.length
+            ? user.dailyTasks.map((task) => {
+              return <DailyCard challenge={task.taskName} key={task.id} id={task.id} isCompleted={task.isComplete}/>
             })
             : null
         }

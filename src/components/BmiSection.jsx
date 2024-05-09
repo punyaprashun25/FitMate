@@ -60,7 +60,7 @@ const BmiSection = () => {
       </div>
       <div className="inp-box flex flex-col gap-3">
         <label htmlFor="height">Weight (kg)</label>
-        <input type="number" name="weight" id="weight" className='outline-none px-4 py-2 bg-transparent border-b-2' value={weightValue} onwheel={numberInputOnWheelPreventChange} onChange={()=>HandleWeight(event)}/>
+        <input type="number" name="weight" id="weight" className='outline-none px-4 py-2 bg-transparent border-b-2' value={weightValue} onWheel={numberInputOnWheelPreventChange} onChange={()=>HandleWeight(event)}/>
       </div>
       <button className="calc outline-none px-4 mt-3 py-2 rounded-md bg-white text-black font-medium"
       onClick={HandleClick}
