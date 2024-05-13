@@ -69,8 +69,7 @@ const Signup = () => {
             taskDate: null,
             personalDetails: {
               name: registerData.name,
-              email: registerData.email,
-              password: registerData.password
+              email: registerData.email
             },
             fitnessDetails: {
               height: null,

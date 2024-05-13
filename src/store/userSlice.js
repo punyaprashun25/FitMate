@@ -45,9 +45,16 @@ const userSlice = createSlice({
             state.fitnessDetails = {};
             state.personalDetails = {};
             state.userBgDetails = {};
+        },
+        updateUserDetails(state, action){
+            const data = action.payload;
+            state.personalDetails.name = data.name;
+            state.fitnessDetails.height = data.height;
+            state.fitnessDetails.weight = data.weight;
+            state.fitnessDetails.BmiValue = data.bmiValue;
         }
     }
 });
 
-export const {PushUserData, PopuserData, addDailyTask, setIsComplete, removeDailyTask} = userSlice.actions;
+export const {PushUserData, PopuserData, addDailyTask, setIsComplete, removeDailyTask, updateUserDetails} = userSlice.actions;
 export default userSlice.reducer;

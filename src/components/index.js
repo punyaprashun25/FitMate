@@ -14,6 +14,7 @@ import Exercise from './Exercise';
 import Home from './Home';
 import WorkoutHistory from './WorkoutHistory';
 import ExerciseCard from './ExerciseCard';
+import UserForm from './UserForm';
 export {
     AboutSection,
     ContactSection,
@@ -30,5 +31,6 @@ export {
     Exercise,
     Home,
     WorkoutHistory,
-    ExerciseCard
+    ExerciseCard,
+    UserForm
 }

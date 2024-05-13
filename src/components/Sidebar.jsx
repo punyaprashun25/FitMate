@@ -5,6 +5,7 @@ import { CgGym } from "react-icons/cg";
 import { FaRegUserCircle } from "react-icons/fa";
 import { IoSettingsOutline } from "react-icons/io5";
 import { CiBookmark } from "react-icons/ci";
+import { LuFormInput } from "react-icons/lu";
 import { useSelector} from 'react-redux';
 
 const Sidebar = ({setCurrentPage}) => {
@@ -32,6 +33,10 @@ const Sidebar = ({setCurrentPage}) => {
         <div className="link-box w-full py-3 border-b-2 flex items-center gap-2">
           <CgGym />
           <p className="text cursor-pointer" onClick={()=>setCurrentPage("Exercise")}>Exercise Guide</p>
+        </div>
+        <div className="link-box w-full py-3 border-b-2 flex items-center gap-2">
+          <LuFormInput />
+          <p className="text cursor-pointer" onClick={()=>setCurrentPage("userForm")}>Update Details</p>
         </div>
         <div className="link-box w-full py-3 border-b-2 flex items-center gap-2">
           <CiBookmark />

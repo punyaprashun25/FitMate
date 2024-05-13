@@ -7,17 +7,17 @@ const deleteTask = async (db, collectionName, userId, taskId) => {
         const userSnap = await getDoc(userRef);
         const userData = userSnap.data();
         if (userData) {
-            await updateDoc(userRef, { ...userData, dailyTasks: userData.dailyTasks.filter((item)=>item.id !== taskId) });
+            await updateDoc(userRef, { ...userData, dailyTasks: userData.dailyTasks.filter((item) => item.id !== taskId) });
         }
         else {
             console.log("error in fetching user data!");
         }
     } catch (error) {
-        toast.error(error.message,{
+        toast.error(error.message, {
             position: "top-center"
         })
     }
-    
+
 }
 const addTask = async (db, collectionName, userId, newTask) => {
     try {
@@ -35,19 +35,19 @@ const addTask = async (db, collectionName, userId, newTask) => {
     }
 }
 
-const setIsCompleteTask = async(db, collectionName, userId, taskId, taskStatus)=>{
+const setIsCompleteTask = async (db, collectionName, userId, taskId, taskStatus) => {
     try {
         const userRef = doc(db, collectionName, userId);
         const userSnap = await getDoc(userRef);
         const userData = userSnap.data();
         if (userData) {
             const dailyTasks = userData.dailyTasks;
-            for(let i = 0; i<dailyTasks.length; i++){
-                if(dailyTasks[i].id===taskId){
-                    dailyTasks[i] = {...dailyTasks[i],isComplete: taskStatus};
+            for (let i = 0; i < dailyTasks.length; i++) {
+                if (dailyTasks[i].id === taskId) {
+                    dailyTasks[i] = { ...dailyTasks[i], isComplete: taskStatus };
                 }
             }
-            await updateDoc(userRef, { ...userData, dailyTasks: dailyTasks});
+            await updateDoc(userRef, { ...userData, dailyTasks: dailyTasks });
         }
         else {
             console.log("error in fetching user data!");
@@ -56,5 +56,27 @@ const setIsCompleteTask = async(db, collectionName, userId, taskId, taskStatus)=
         console.log(error);
     }
 }
+const updateDetails = async (db, collectionName, userId, updatedData) => {
+    try {
+        const userRef = doc(db, collectionName, userId);
+        const userSnap = await getDoc(userRef);
+        const userData = userSnap.data();
+        if (userData) {
+            console.log(updatedData);
+            await updateDoc(userRef, { ...userData, personalDetails: {...userData.personalDetails, name: updatedData.name}, fitnessDetails:{
+                ...userData.fitnessDetails, height: updatedData.height, weight: updatedData.weight, BmiValue: updatedData.bmiValue
+            } });
+            toast.success("User Details updated successfully!",{
+                position: "top-center"
+            })
+        }
+        else {
+            console.log("error in fetching user data!");
+        }
+    } catch (error) {
+        console.log(error);
+    }
 
-export { deleteTask, addTask, setIsCompleteTask };
+}
+
+export { deleteTask, addTask, setIsCompleteTask, updateDetails };

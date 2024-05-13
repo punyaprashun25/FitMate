@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Exercise, Home, Profile, Sidebar, UserNavbar, WorkoutHistory } from '../components'
+import { Exercise, Home, Profile, Sidebar, UserForm, UserNavbar, WorkoutHistory } from '../components'
 import { useDispatch, useSelector } from 'react-redux';
 import { auth, fireStore } from '../firebase/firebase';
 import { doc, getDoc } from 'firebase/firestore';
@@ -13,7 +13,8 @@ const UserDashboard = () => {
     "Home": <Home />,
     "Profile": <Profile />,
     "Exercise": <Exercise />,
-    "WorkoutHistory": <WorkoutHistory />
+    "WorkoutHistory": <WorkoutHistory />,
+    "userForm": <UserForm />
   }
 
   const fetchUserDetails = async () => {
