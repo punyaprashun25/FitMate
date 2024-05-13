@@ -1,4 +1,5 @@
 import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { toast } from "react-toastify";
 
 const deleteTask = async (db, collectionName, userId, taskId) => {
     try {
@@ -12,7 +13,9 @@ const deleteTask = async (db, collectionName, userId, taskId) => {
             console.log("error in fetching user data!");
         }
     } catch (error) {
-        console.log(error);
+        toast.error(error.message,{
+            position: "top-center"
+        })
     }
     
 }

@@ -66,6 +66,7 @@ const Signup = () => {
           // userData to store
           const userbody = {
             id: user.user.uid,
+            taskDate: null,
             personalDetails: {
               name: registerData.name,
               email: registerData.email,
@@ -78,12 +79,13 @@ const Signup = () => {
               targetGoal: null,
             },
             dailyTasks: [],
+            history: [],
             userBgDetails: {
               smoker: false,
               exercisePerDay: 0,
               isJoinedGym: false,
               durationPrevOfGym: 0,
-            }
+            },
           }
           setDoc(doc(fireStore, "users", user.user.uid),userbody)
           toast.success("User registered Successfully!", {

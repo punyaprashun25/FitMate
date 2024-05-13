@@ -17,7 +17,6 @@ const UserDashboard = () => {
   }
 
   const fetchUserDetails = async () => {
-    console.log("I am in");
     if(userData && userData.length > 0) return;
     auth.onAuthStateChanged(async (user) => {
       if (user) {
@@ -35,6 +34,20 @@ const UserDashboard = () => {
   }
   useEffect(() => {
     fetchUserDetails();
+
+    // time syncing program
+    
+    const id = setInterval(()=>{
+      let lastCheckedDate = userData.taskDate;
+      if(lastCheckedDate)
+      {
+        
+      }
+    },1000)
+
+    return ()=>{
+      clearInterval(id);
+    }
   }, [])
 
   return (

@@ -3,10 +3,12 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialUserState =
     {
         id:null,
+        taskDate: null,
         dailyTasks:[],
         fitnessDetails: {},
         personalDetails: {},
-        userBgDetails: {}
+        userBgDetails: {},
+        history: [],
     };
 
 const userSlice = createSlice({
@@ -37,7 +39,12 @@ const userSlice = createSlice({
             }
         },
         PopuserData(state){
-            state = initialUserState;
+            state.id = null;
+            state.taskDate =  null,
+            state.dailyTasks = [];
+            state.fitnessDetails = {};
+            state.personalDetails = {};
+            state.userBgDetails = {};
         }
     }
 });

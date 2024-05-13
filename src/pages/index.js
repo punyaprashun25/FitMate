@@ -4,11 +4,13 @@ import Homepage from './Homepage'
 import Login from './Login'
 import Signup from './Signup'
 import UserDashboard from './UserDashboard'
+import ForgetPassword from './ForgetPassword'
 export {
     About,
     Contact,
     Homepage,
     Login,
     Signup,
-    UserDashboard
+    UserDashboard,
+    ForgetPassword
 }

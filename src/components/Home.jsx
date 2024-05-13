@@ -30,7 +30,7 @@ const Home = () => {
   const HandleAddNewTask = async() => {
     if (newTask.length >= 4) {
       // update task
-      dispatch(addDailyTask({id: uuidv4(), taskName: newTask, isComplete: false}));
+      dispatch(addDailyTask({id: uuidv4(), timeStamp: new Date().toLocaleString(), taskName: newTask, isComplete: false}));
       addTask(fireStore, "users", user.id,{id: uuidv4(), taskName: newTask, isComplete: false});
       setNewTask("");
       setIsAdding(false);
@@ -42,6 +42,7 @@ const Home = () => {
   useEffect(()=>{
     const quotes = generateRandomQuote();
     setQuotes(quotes);
+
   },[])
 
   return (

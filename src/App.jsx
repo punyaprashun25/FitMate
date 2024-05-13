@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {Homepage, About, Contact, Login, Signup, UserDashboard} from './pages'
+import {Homepage, About, Contact, Login, Signup, UserDashboard, ForgetPassword} from './pages'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
@@ -24,6 +24,7 @@ const App = () => {
           <Route path='/login' element={<Login/>}></Route>
           <Route path='/signup' element={<Signup/>}></Route>
           <Route path='/dashboard' element={<UserDashboard/>}></Route>
+          <Route path='/forget-password' element={<ForgetPassword/>}></Route>
       </Routes>
       <ToastContainer />
     </BrowserRouter>
