@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { CiCircleRemove } from "react-icons/ci";
 import { useDispatch, useSelector } from 'react-redux';
-import { setIsComplete, removeDailyTask } from '../store/userSlice';
+import { setIsComplete, removeDailyTask, addHistory } from '../store/userSlice';
 import { deleteTask, setIsCompleteTask } from '../firebase/Operation';
 import { fireStore } from '../firebase/firebase';
 

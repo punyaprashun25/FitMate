@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FaHome } from "react-icons/fa";
 import { CgGym } from "react-icons/cg";
 import { FaRegUserCircle } from "react-icons/fa";
@@ -8,9 +8,12 @@ import { CiBookmark } from "react-icons/ci";
 import { LuFormInput } from "react-icons/lu";
 import { useSelector} from 'react-redux';
 
-const Sidebar = ({setCurrentPage}) => {
-
+const Sidebar = () => {
   const user = useSelector((state)=>state.user);
+  const Navigate = useNavigate();
+  const HandleNavigate = (path)=>{
+      Navigate(path);
+  }
 
   return (
     <div className='w-72 hidden md:flex h-screen flex-col items-center gap-16 sticky left-0 top-0 shadow-md px-4 py-16'>
@@ -28,27 +31,27 @@ const Sidebar = ({setCurrentPage}) => {
       <div className="links font-semibold text-xl w-full text-center text-gray-700 px-6 flex flex-col gap-2">
         <div className="link-box w-full py-3 border-b-2 flex items-center gap-2">
           <FaHome />
-          <p className="text cursor-pointer" onClick={()=>setCurrentPage("Home")}>Home</p>
+          <p className="text cursor-pointer" onClick={()=>HandleNavigate("")}>Home</p>
         </div>
         <div className="link-box w-full py-3 border-b-2 flex items-center gap-2">
           <CgGym />
-          <p className="text cursor-pointer" onClick={()=>setCurrentPage("Exercise")}>Exercise Guide</p>
+          <p className="text cursor-pointer" onClick={()=>HandleNavigate("exercise")}>Exercise Guide</p>
         </div>
         <div className="link-box w-full py-3 border-b-2 flex items-center gap-2">
           <LuFormInput />
-          <p className="text cursor-pointer" onClick={()=>setCurrentPage("userForm")}>Update Details</p>
+          <p className="text cursor-pointer" onClick={()=>HandleNavigate("userform")}>Update Details</p>
         </div>
         <div className="link-box w-full py-3 border-b-2 flex items-center gap-2">
           <CiBookmark />
-          <p className="text cursor-pointer" onClick={()=>setCurrentPage("WorkoutHistory")}>History</p>
+          <p className="text cursor-pointer" onClick={()=>HandleNavigate("history")}>History</p>
         </div>
         <div className="link-box w-full py-3 border-b-2 flex items-center gap-2 ">
           <FaRegUserCircle />
-          <p className="text cursor-pointer" onClick={()=>setCurrentPage("Profile")}>Profile</p>
+          <p className="text cursor-pointer" onClick={()=>HandleNavigate("profile")}>Profile</p>
         </div>
         <div className="link-box w-full py-3 flex items-center gap-2">
           <IoSettingsOutline />
-          <p className="text cursor-pointer" onClick={()=>setCurrentPage("Setting")}>Setting</p>
+          <p className="text cursor-pointer" onClick={()=>HandleNavigate("Setting")}>Setting</p>
         </div>
       </div>
 

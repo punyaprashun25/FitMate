@@ -10,6 +10,7 @@ const UserForm = () => {
   const dispatch = useDispatch();
   const [userData, setUserData] = useState({
     name: user.personalDetails.name,
+    age: user.personalDetails.age,
     height: user.fitnessDetails.height,
     weight: user.fitnessDetails.weight,
     bmiValue: user.fitnessDetails.BmiValue, 
@@ -39,8 +40,8 @@ const UserForm = () => {
       <form className='w-full px-8 py-6 flex justify-center flex-col items-center bg-white rounded-md gap-3'
       onSubmit={HandleUpdate}
       >
-        <div className="w-full form-container flex justify-between">
-          <div className="left w-full max-w-[49%]">
+        <div className="w-full form-container flex  justify-center flex-col lg:flex-row lg:justify-between">
+          <div className="left w-full lg:max-w-[49%]">
             <div className="details-box w-full px-2 py-2 flex flex-col gap-3">
               <p className="heading-label text-xl font-medium">Personal Details</p>
               <div className="detail flex gap-4 text-lg ml-10 items-center justify-between">
@@ -58,13 +59,19 @@ const UserForm = () => {
                 />
               </div>
               <div className="detail flex gap-4 text-lg ml-10 items-center justify-between">
-                <p className="label font-medium">Height :</p>
+                <p className="label font-medium">Age :</p>
+                <input className="value w-[75%] text-center border px-2 py-2 rounded-lg outline-none" value={userData.name} type='text' name='name'
+                onChange={HandleChange}
+                />
+              </div>
+              <div className="detail flex gap-4 text-lg ml-10 items-center justify-between">
+                <p className="label font-medium">Height [cm] :</p>
                 <input className="value w-[75%] text-center border px-2 py-2 rounded-lg outline-none" value={userData.height} type='text' name='height'
                 onChange={HandleChange}
                 />
               </div>
               <div className="detail flex gap-4 text-lg ml-10 items-center justify-between">
-                <p className="label font-medium">weight :</p>
+                <p className="label font-medium">weight [kg]:</p>
                 <input className="value w-[75%] text-center border px-2 py-2 rounded-lg outline-none" value={userData.weight} type='text' name='weight'
                 onChange={HandleChange}
                 />
@@ -76,7 +83,7 @@ const UserForm = () => {
               
             </div>
           </div>
-          <div className="right w-full max-w-[49%] h-96 bg-green-600">
+          <div className="right w-full lg:max-w-[49%] h-96 bg-green-600">
 
           </div>
         </div>

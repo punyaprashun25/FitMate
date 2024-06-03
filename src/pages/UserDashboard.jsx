@@ -4,18 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { auth, fireStore } from '../firebase/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { PushUserData } from '../store/userSlice';
+import { Outlet } from 'react-router-dom';
 
 const UserDashboard = () => {
   const userData = useSelector((state)=>state.user);
   const dispatch = useDispatch();
-  const [currentPage, setCurrentPage] = useState("Home");
-  const sections = {
-    "Home": <Home />,
-    "Profile": <Profile />,
-    "Exercise": <Exercise />,
-    "WorkoutHistory": <WorkoutHistory />,
-    "userForm": <UserForm />
-  }
 
   const fetchUserDetails = async () => {
     if(userData && userData.length > 0) return;
@@ -35,31 +28,15 @@ const UserDashboard = () => {
   }
   useEffect(() => {
     fetchUserDetails();
-
-    // time syncing program
-    
-    const id = setInterval(()=>{
-      let lastCheckedDate = userData.taskDate;
-      if(lastCheckedDate)
-      {
-        
-      }
-    },1000)
-
-    return ()=>{
-      clearInterval(id);
-    }
   }, [])
 
   return (
     <div>
       <div className='flex w-full'>
-        <Sidebar setCurrentPage={setCurrentPage} />
+        <Sidebar />
         <div className='dashboard-container w-full flex flex-col'>
           <UserNavbar />
-          {
-            sections[currentPage]
-          }
+          <Outlet />
         </div>
       </div>
     </div>
